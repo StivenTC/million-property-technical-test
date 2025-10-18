@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Infrastructure\MillionProperty.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="MillionProperty.Tests" />
+  </ItemGroup>
+
 </Project>

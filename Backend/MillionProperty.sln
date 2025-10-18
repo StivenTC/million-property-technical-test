@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillionProperty.Domain", "D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillionProperty.Infrastructure", "Infrastructure\MillionProperty.Infrastructure.csproj", "{CC582DF6-CC2F-40D7-8FB7-92864F8B5A1F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MillionProperty.Tests", "Tests\MillionProperty.Tests.csproj", "{724D32B2-27AF-4A78-939F-15CF70A28EB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{CC582DF6-CC2F-40D7-8FB7-92864F8B5A1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC582DF6-CC2F-40D7-8FB7-92864F8B5A1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC582DF6-CC2F-40D7-8FB7-92864F8B5A1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{724D32B2-27AF-4A78-939F-15CF70A28EB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{724D32B2-27AF-4A78-939F-15CF70A28EB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{724D32B2-27AF-4A78-939F-15CF70A28EB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{724D32B2-27AF-4A78-939F-15CF70A28EB9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
