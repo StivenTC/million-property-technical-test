@@ -1,44 +1,74 @@
+using MillionProperty.Application;
+using MillionProperty.Domain;
+using MillionProperty.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddCors(options =>
+{
+  options.AddPolicy("AllowReactApp",
+      policy =>
+      {
+        policy.WithOrigins("http://localhost:3000")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+      });
+});
+
+builder.Services.Configure<MongoDatabaseSettings>(
+    builder.Configuration.GetSection("MongoDatabaseSettings"));
+
+builder.Services.AddSingleton<IPropertyRepository, PropertyRepository>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseCors("AllowReactApp");
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/api/properties", async (
+    IPropertyRepository propertyRepo,
+    string? name,
+    string? address,
+    decimal? minPrice,
+    decimal? maxPrice) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+  var properties = await propertyRepo.GetPropertiesAsync(name, address, minPrice, maxPrice);
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
+  var propertyDtos = new List<PropertyDto>();
+  foreach (var prop in properties)
+  {
+    var image = await propertyRepo.GetFirstImageByPropertyIdAsync(prop.Id);
+
+    propertyDtos.Add(new PropertyDto
+    {
+      IdOwner = prop.IdOwner,
+      Name = prop.Name,
+      Address = prop.Address,
+      Price = prop.Price,
+      ImageUrl = image?.File ?? string.Empty
+    });
+  }
+
+  return Results.Ok(propertyDtos);
+
 })
-.WithName("GetWeatherForecast")
-.WithOpenApi();
+.WithName("GetProperties")
+.WithTags("Properties");
+
+app.MapGet("/api/properties/{id}", async (string id, IPropertyRepository propertyRepo) =>
+{
+  var property = await propertyRepo.GetPropertyByIdAsync(id);
+
+  if (property is null)
+  {
+    return Results.NotFound();
+  }
+
+  return Results.Ok(property);
+
+})
+.WithName("GetPropertyById")
+.WithTags("Properties");
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
