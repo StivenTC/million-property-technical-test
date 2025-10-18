@@ -23,6 +23,9 @@ builder.Services.Configure<MongoDatabaseSettings>(
 
 builder.Services.AddSingleton<IPropertyRepository, PropertyRepository>();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
 app.UseExceptionHandler();
@@ -30,6 +33,12 @@ app.UseExceptionHandler();
 app.UseCors("AllowReactApp");
 
 app.UseHttpsRedirection();
+
+if (app.Environment.IsDevelopment())
+{
+  app.UseSwagger();
+  app.UseSwaggerUI();
+}
 
 app.MapGet("/api/properties", async (
     IPropertyRepository propertyRepo,
