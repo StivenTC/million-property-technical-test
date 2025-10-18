@@ -4,6 +4,9 @@ using MillionProperty.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddExceptionHandler<MillionProperty.API.Middleware.GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 builder.Services.AddCors(options =>
 {
   options.AddPolicy("AllowReactApp",
@@ -21,6 +24,8 @@ builder.Services.Configure<MongoDatabaseSettings>(
 builder.Services.AddSingleton<IPropertyRepository, PropertyRepository>();
 
 var app = builder.Build();
+
+app.UseExceptionHandler();
 
 app.UseCors("AllowReactApp");
 
