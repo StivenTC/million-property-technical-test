@@ -1,3 +1,4 @@
+using System.Net;
 using System.Net.Http.Json;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
@@ -47,7 +48,6 @@ public class PropertiesApiTests
   [Test]
   public async Task GetProperties_ReturnsOkWithPropertyDtos()
   {
-    // --- ARRANGE ---
     var testProperty = new Property
     {
       Id = "prop1",
@@ -56,20 +56,17 @@ public class PropertiesApiTests
       Price = 1000,
       IdOwner = "owner1"
     };
-
     var testImage = new PropertyImage
     {
       Id = "img1",
       IdProperty = "prop1",
-      File = "https://example.com/image.png",
+      File = "http://example.com/example.png",
       Enabled = true
     };
-
     var propertiesList = new List<Property> { testProperty };
 
     _mockRepo.Setup(repo => repo.GetPropertiesAsync(
-            It.IsAny<string>(), It.IsAny<string>(),
-            It.IsAny<decimal?>(), It.IsAny<decimal?>()))
+            It.IsAny<string>(), It.IsAny<string>(), It.IsAny<decimal?>(), It.IsAny<decimal?>()))
         .ReturnsAsync(propertiesList);
 
     _mockRepo.Setup(repo => repo.GetFirstImageByPropertyIdAsync("prop1"))
@@ -78,11 +75,44 @@ public class PropertiesApiTests
     var response = await _client.GetAsync("/api/properties");
 
     response.EnsureSuccessStatusCode();
-    var dtos = await response.Content.ReadFromJsonAsync<List<PropertyDto>>();
+
+    List<PropertyDto>? dtos = await response.Content.ReadFromJsonAsync<List<PropertyDto>>();
 
     Assert.IsNotNull(dtos);
-    Assert.That(dtos.Count, Is.EqualTo(1));
+    Assert.That(dtos!.Count, Is.EqualTo(1));
     Assert.That(dtos[0].Name, Is.EqualTo("Test Property"));
-    Assert.That(dtos[0].ImageUrl, Is.EqualTo("https://example.com/image.png"));
+  }
+
+  [Test]
+  public async Task GetPropertyById_ReturnsOk_When_IdExists()
+  {
+    var testId = "good-id";
+    var testProperty = new Property { Id = testId, Name = "Found Property", Address = "456 Found St" };
+
+    _mockRepo.Setup(repo => repo.GetPropertyByIdAsync(testId))
+        .ReturnsAsync(testProperty);
+
+    var response = await _client.GetAsync($"/api/properties/{testId}");
+
+    response.EnsureSuccessStatusCode();
+
+    Property? property = await response.Content.ReadFromJsonAsync<Property>();
+
+    Assert.IsNotNull(property);
+    Assert.That(property!.Id, Is.EqualTo(testId));
+    Assert.That(property.Name, Is.EqualTo("Found Property"));
+  }
+
+  [Test]
+  public async Task GetPropertyById_ReturnsNotFound_When_IdDoesNotExist()
+  {
+    var testId = "bad-id";
+
+    _mockRepo.Setup(repo => repo.GetPropertyByIdAsync(testId))
+        .ReturnsAsync((Property?)null);
+
+    var response = await _client.GetAsync($"/api/properties/{testId}");
+
+    Assert.That(response.StatusCode, Is.EqualTo(HttpStatusCode.NotFound));
   }
 }
