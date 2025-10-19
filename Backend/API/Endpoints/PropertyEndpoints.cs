@@ -39,17 +39,32 @@ public static class PropertyEndpoints
     .WithSummary("Obtener lista de propiedades (con filtros)")
     .WithDescription("Devuelve una lista de propiedades. Si no se envían parámetros de consulta, devuelve todas. Se puede filtrar por 'name', 'address', 'minPrice' y 'maxPrice'.");
 
-    app.MapGet("/api/properties/{id}", async (string id, IPropertyRepository propertyRepo) =>
+    app.MapGet("/api/properties/{id}", async (string id, IPropertyRepository repo) =>
     {
-      var property = await propertyRepo.GetPropertyByIdAsync(id);
-
+      var property = await repo.GetPropertyByIdAsync(id);
       if (property is null)
       {
         return Results.NotFound();
       }
 
-      return Results.Ok(property);
+      var owner = await repo.GetOwnerByIdAsync(property.IdOwner);
+      var images = await repo.GetImagesByPropertyIdAsync(property.Id);
+      var traces = await repo.GetTracesByPropertyIdAsync(property.Id);
 
+      var detailDto = new PropertyDetailDto
+      {
+        Id = property.Id,
+        Name = property.Name,
+        Address = property.Address,
+        Price = property.Price,
+        CodeInternal = property.CodeInternal,
+        Year = property.Year,
+        Owner = owner,
+        Images = images,
+        Traces = traces
+      };
+
+      return Results.Ok(detailDto);
     })
     .WithName("GetPropertyById")
     .WithTags("Properties")

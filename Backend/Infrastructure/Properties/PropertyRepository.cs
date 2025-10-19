@@ -67,4 +67,14 @@ public class PropertyRepository : IPropertyRepository
     return await _imagesCollection.Find(img => img.IdProperty == propertyId && img.Enabled)
                                   .FirstOrDefaultAsync();
   }
+  public async Task<IEnumerable<PropertyImage>> GetImagesByPropertyIdAsync(string propertyId)
+  {
+    return await _imagesCollection.Find(img => img.IdProperty == propertyId && img.Enabled)
+                                  .ToListAsync();
+  }
+  public async Task<IEnumerable<PropertyTrace>> GetTracesByPropertyIdAsync(string propertyId)
+  {
+    return await _tracesCollection.Find(t => t.IdProperty == propertyId)
+                                  .ToListAsync();
+  }
 }

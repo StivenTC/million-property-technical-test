@@ -89,20 +89,56 @@ public class PropertiesApiTests
   public async Task GetPropertyById_ReturnsOk_When_IdExists()
   {
     var testId = "good-id";
-    var testProperty = new Property { Id = testId, Name = "Found Property", Address = "456 Found St" };
+
+    var testProperty = new Property
+    {
+      Id = testId,
+      Name = "Found Property",
+      IdOwner = "owner-123"
+    };
+    var testOwner = new Owner { Id = "owner-123", Name = "Test Owner" };
+    var testImages = new List<PropertyImage>
+        {
+            new PropertyImage { Id = "img-1", IdProperty = testId, File = "url1", Enabled = true }
+        };
+    var testTraces = new List<PropertyTrace>
+        {
+            new PropertyTrace { Id = "trace-1", IdProperty = testId, Name = "Venta", Value = 500 }
+        };
 
     _mockRepo.Setup(repo => repo.GetPropertyByIdAsync(testId))
         .ReturnsAsync(testProperty);
+
+    _mockRepo.Setup(repo => repo.GetOwnerByIdAsync("owner-123"))
+        .ReturnsAsync(testOwner);
+
+    _mockRepo.Setup(repo => repo.GetImagesByPropertyIdAsync(testId))
+        .ReturnsAsync(testImages);
+
+    _mockRepo.Setup(repo => repo.GetTracesByPropertyIdAsync(testId))
+        .ReturnsAsync(testTraces);
 
     var response = await _client.GetAsync($"/api/properties/{testId}");
 
     response.EnsureSuccessStatusCode();
 
-    Property? property = await response.Content.ReadFromJsonAsync<Property>();
+    var detailDto = await response.Content.ReadFromJsonAsync<PropertyDetailDto>();
 
-    Assert.IsNotNull(property);
-    Assert.That(property!.Id, Is.EqualTo(testId));
-    Assert.That(property.Name, Is.EqualTo("Found Property"));
+    Assert.IsNotNull(detailDto);
+
+    Assert.That(detailDto.Id, Is.EqualTo(testId));
+    Assert.That(detailDto.Name, Is.EqualTo("Found Property"));
+
+    Assert.IsNotNull(detailDto.Owner);
+    Assert.That(detailDto.Owner.Name, Is.EqualTo("Test Owner"));
+
+    Assert.IsNotNull(detailDto.Images);
+    Assert.That(detailDto.Images.Count(), Is.EqualTo(1));
+    Assert.That(detailDto.Images.First().File, Is.EqualTo("url1"));
+
+    Assert.IsNotNull(detailDto.Traces);
+    Assert.That(detailDto.Traces.Count(), Is.EqualTo(1));
+    Assert.That(detailDto.Traces.First().Name, Is.EqualTo("Venta"));
   }
 
   [Test]

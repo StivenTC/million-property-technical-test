@@ -13,4 +13,6 @@ public interface IPropertyRepository
   Task<Property?> GetPropertyByIdAsync(string id);
   Task<Owner?> GetOwnerByIdAsync(string id);
   Task<PropertyImage?> GetFirstImageByPropertyIdAsync(string propertyId);
+  Task<IEnumerable<PropertyImage>> GetImagesByPropertyIdAsync(string propertyId);
+  Task<IEnumerable<PropertyTrace>> GetTracesByPropertyIdAsync(string propertyId);
 }
