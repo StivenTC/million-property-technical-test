@@ -79,8 +79,10 @@ public class PropertiesApiTests
     List<PropertyDto>? dtos = await response.Content.ReadFromJsonAsync<List<PropertyDto>>();
 
     Assert.IsNotNull(dtos);
+    Assert.That(dtos[0].Id, Is.EqualTo("prop1"));
     Assert.That(dtos!.Count, Is.EqualTo(1));
     Assert.That(dtos[0].Name, Is.EqualTo("Test Property"));
+    Assert.That(dtos[0].ImageUrl, Is.EqualTo("http://example.com/example.png"));
   }
 
   [Test]
