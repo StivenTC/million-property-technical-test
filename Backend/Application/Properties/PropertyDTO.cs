@@ -1,4 +1,4 @@
-namespace MillionProperty.Application;
+namespace MillionProperty.Application.Properties;
 
 public class PropertyDto
 {

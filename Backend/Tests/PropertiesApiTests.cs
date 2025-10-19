@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.Extensions.DependencyInjection;
-using MillionProperty.Application;
+using MillionProperty.Application.Properties;
 using MillionProperty.Domain;
 using Moq;
 

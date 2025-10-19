@@ -1,6 +1,6 @@
 using MillionProperty.Domain;
 
-namespace MillionProperty.Application;
+namespace MillionProperty.Application.Properties;
 
 public interface IPropertyRepository
 {

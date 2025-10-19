@@ -1,10 +1,10 @@
 using Microsoft.Extensions.Options;
-using MillionProperty.Application;
+using MillionProperty.Application.Properties;
 using MillionProperty.Domain;
 using MongoDB.Bson;
 using MongoDB.Driver;
 
-namespace MillionProperty.Infrastructure;
+namespace MillionProperty.Infrastructure.Properties;
 
 public class PropertyRepository : IPropertyRepository
 {
