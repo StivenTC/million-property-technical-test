@@ -21,6 +21,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/api/portraits/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'maustorageprod.blob.core.windows.net',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };
