@@ -18,6 +18,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   const property = await getPropertyDetail(id);
 
+  if (!property) {
+    return { title: 'Propiedad no encontrada' };
+  }
+
   return {
     title: `${property.name} | Million`,
     description: `Detalles de ${property.name}, ubicada en ${property.address}`,
@@ -34,6 +38,10 @@ export default async function PropertyDetailPage({ params }: Props) {
   }
 
   const property = await getPropertyDetail(id);
+
+  if (!property) {
+    notFound();
+  }
 
   return (
     <PropertyDetailScreen property={property} />

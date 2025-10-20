@@ -11,9 +11,15 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'ejemplo.com',
+        hostname: 'azfd-prod.millionluxury.com',
         port: '',
-        pathname: '/fotos/**',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'randomuser.me',
+        port: '',
+        pathname: '/api/portraits/**',
       },
     ],
   },

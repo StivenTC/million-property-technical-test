@@ -6,9 +6,10 @@ import styles from '@/styles/modules/PropertyCard.module.scss';
 
 interface Props {
   property: PropertyDto;
+  isPriority?: boolean;
 }
 
-export default function PropertyCard({ property }: Props) {
+export default function PropertyCard({ property, isPriority = false }: Props) {
   const slug = createSlug(property.name, property.id);
 
   return (
@@ -24,7 +25,7 @@ export default function PropertyCard({ property }: Props) {
           fill
           sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
           className={styles.image}
-          priority={false}
+          priority={isPriority}
         />
       </div>
       <div className={styles.content}>

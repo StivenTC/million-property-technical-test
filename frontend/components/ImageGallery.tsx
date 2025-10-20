@@ -26,6 +26,7 @@ export default function ImageGallery({ images }: Props) {
             fill
             className={styles.mainImage}
             sizes="60vw"
+            priority
           />
         </div>
       </div>
@@ -55,13 +56,12 @@ export default function ImageGallery({ images }: Props) {
               key={image.id}
               className={`${styles.thumbnail} ${index === activeIndex ? styles.thumbnailActive : ''}`}
               onClick={() => setActiveIndex(index)}
-              aria-label={`Ver imagen ${index + 1}`}
-            >
+              aria-label={`Ver imagen ${index + 1}`}>
               <Image
                 src={image.file}
                 alt={`Miniatura ${index + 1}`}
                 fill
-                sizes="10vw"
+                sizes="210px"
                 className={styles.thumbnailImage}
               />
             </button>

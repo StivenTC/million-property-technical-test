@@ -46,14 +46,14 @@ export async function getPropertyList(
 
 export async function getPropertyDetail(
   id: string
-): Promise<PropertyDetailDto> {
+): Promise<PropertyDetailDto | null> {
   try {
     const res = await fetch(`${API_BASE_URL}/api/properties/${id}`, {
       next: { revalidate: 3600 }
     });
 
     if (res.status === 404) {
-      notFound();
+      return null;
     }
 
     if (!res.ok) {

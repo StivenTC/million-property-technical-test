@@ -20,6 +20,7 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
 
   const [properties, setProperties] = useState(initialProperties);
 
+  const [searchPerformed, setSearchPerformed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -33,14 +34,12 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
 
   const handleSearch = async () => {
     setIsLoading(true);
+    setSearchPerformed(true);
     setError(null);
-    setProperties([]); // Limpia resultados anteriores
+    setProperties([]);
     try {
       const results = await getPropertyList(filters);
       setProperties(results);
-      if (results.length === 0) {
-        setError('No se encontraron propiedades con esos filtros.');
-      }
     } catch (err) {
       setError('Ocurrió un error al realizar la búsqueda.');
       console.error(err);
@@ -52,7 +51,7 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
   return (
     <section>
       <div className={styles.searchContainer}>
-        <div className={styles.filterGrid}>
+        <form className={styles.filterGrid} onSubmit={(e) => { e.preventDefault(); handleSearch(); }}>
           <div className={styles.filterGroup}>
             <label htmlFor="name">Nombre</label>
             <input
@@ -102,23 +101,37 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
           </div>
 
           <button
-            onClick={handleSearch}
+            type="submit"
             disabled={isLoading}
-            className={styles.searchButton}>
+            className={styles.searchButton}
+          >
             {isLoading ? 'Buscando...' : 'Buscar'}
           </button>
-        </div>
+        </form>
       </div>
 
-      {isLoading && <div className={styles.loading}>Cargando propiedades...</div>}
+      {isLoading && <div role="status" className={styles.loading}>Cargando propiedades...</div>}
 
-      {!isLoading && error && <div className={styles.error}>{error}</div>}
+      {!isLoading && error && (
+        <div role="alert" className={styles.error}>
+          {error}
+        </div>
+      )}
+
+      {!isLoading && !error && searchPerformed && properties.length === 0 && (
+        <div className={styles.noResults}>
+          No se encontraron propiedades. Intenta ajustar tus filtros.
+        </div>
+      )}
 
       {!isLoading && !error && properties.length > 0 && (
-        <div className={styles.resultsGrid}>
-          {properties.map((property) => (
-            <PropertyCard key={property.id} property={property} />
-          ))}
+        <div>
+          <h2>Resultados</h2>
+          <div className={styles.resultsGrid}>
+            {properties.map((property, index) => (
+              <PropertyCard key={property.id} property={property} isPriority={index < 2} />
+            ))}
+          </div>
         </div>
       )}
     </section>
