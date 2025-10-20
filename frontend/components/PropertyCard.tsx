@@ -16,8 +16,7 @@ export default function PropertyCard({ property, isPriority = false }: Props) {
     <Link
       href={`/property/${slug}`}
       className={styles.card}
-      aria-label={`Ver propiedad ${property.name}`}
-    >
+      aria-label={`Ver propiedad ${property.name}`}>
       <div className={styles.imageWrapper}>
         <Image
           src={property.imageUrl || '/placeholder-image.jpg'}

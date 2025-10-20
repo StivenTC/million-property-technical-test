@@ -6,6 +6,8 @@
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  max-width: 400px;
 
   &:hover {
     transform: translateY(-5px);

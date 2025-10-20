@@ -52,6 +52,8 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
     setError(null);
   };
 
+  const isFilterActive = Object.values(filters).some((val) => val !== '');
+
   return (
     <section aria-labelledby="main-heading">
       <h1 id="main-heading" className={styles.mainTitle}>
@@ -67,67 +69,75 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
           }}
         >
           <div className={styles.filterGroup}>
-            <label htmlFor="name">Nombre</label>
+            <label htmlFor="name" className="sr-only">Nombre de la propiedad</label>
             <input
               type="text"
               id="name"
               name="name"
-              placeholder="Ej: Casa en el lago"
+              placeholder="Buscar por nombre o zona"
               value={filters.name}
               onChange={handleFilterChange}
             />
           </div>
 
           <div className={styles.filterGroup}>
-            <label htmlFor="address">Dirección</label>
+            <label htmlFor="address" className="sr-only">Dirección</label>
             <input
               type="text"
               id="address"
               name="address"
-              placeholder="Ej: 123 Calle Falsa"
+              placeholder="¿Dónde?"
               value={filters.address}
               onChange={handleFilterChange}
             />
           </div>
 
           <div className={`${styles.filterGroup} ${styles.priceFilter}`}>
-            <label htmlFor="minPrice">Precio Mín.</label>
+            <label htmlFor="minPrice" className="sr-only">Precio Mínimo</label>
             <input
               type="number"
               id="minPrice"
               name="minPrice"
-              placeholder="Ej: 100000"
+              placeholder="Precio mín."
               value={filters.minPrice}
               onChange={handleFilterChange}
             />
           </div>
 
           <div className={`${styles.filterGroup} ${styles.priceFilter}`}>
-            <label htmlFor="maxPrice">Precio Máx.</label>
+            <label htmlFor="maxPrice" className="sr-only">Precio Máximo</label>
             <input
               type="number"
               id="maxPrice"
               name="maxPrice"
-              placeholder="Ej: 500000"
+              placeholder="Precio máx."
               value={filters.maxPrice}
               onChange={handleFilterChange}
             />
           </div>
 
-          <div className={styles.buttonGroup}>
+          <div className={styles.buttonContainer}>
+            {isFilterActive && (
+              <button
+                type="button"
+                onClick={handleReset}
+                className={styles.clearButton}
+              >
+                Limpiar
+              </button>
+            )}
             <button
               type="submit"
               disabled={isLoading}
               className={styles.searchButton}
+              aria-label="Buscar"
             >
-              {isLoading ? 'Buscando...' : 'Buscar'}
-            </button>
-            <button
-              type="button"
-              onClick={handleReset}
-              className={styles.resetButton}
-            >
-              Limpiar filtros
+              <span className={styles.searchButtonIcon}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z" />
+                </svg>
+              </span>
+              <span className={styles.searchButtonText}>Buscar</span>
             </button>
           </div>
         </form>

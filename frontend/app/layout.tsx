@@ -22,7 +22,7 @@ export default function RootLayout({
               <Image
                 src="https://maustorageprod.blob.core.windows.net/spinfileuat/Spin/Data/Estate/IMG/ceb693ad6b7643fc8c1be271d6a9c068.svg"
                 alt="Million Logo"
-                width={150}
+                width={120}
                 height={40}
                 priority
               />
