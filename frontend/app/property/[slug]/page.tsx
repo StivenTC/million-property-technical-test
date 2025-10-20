@@ -5,12 +5,13 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const id = extractIdFromSlug(params.slug);
   if (!id) {
     return { title: 'Propiedad no encontrada' };
@@ -28,7 +29,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function PropertyDetailPage({ params }: Props) {
+export default async function PropertyDetailPage(props: Props) {
+  const params = await props.params;
   const { slug } = params;
 
   const id = extractIdFromSlug(slug);
