@@ -77,7 +77,7 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
             />
           </div>
 
-          <div className={styles.filterGroup}>
+          <div className={`${styles.filterGroup} ${styles.priceFilter}`}>
             <label htmlFor="minPrice">Precio Mín.</label>
             <input
               type="number"
@@ -89,7 +89,7 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
             />
           </div>
 
-          <div className={styles.filterGroup}>
+          <div className={`${styles.filterGroup} ${styles.priceFilter}`}>
             <label htmlFor="maxPrice">Precio Máx.</label>
             <input
               type="number"
@@ -104,8 +104,7 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
           <button
             onClick={handleSearch}
             disabled={isLoading}
-            className={styles.searchButton}
-          >
+            className={styles.searchButton}>
             {isLoading ? 'Buscando...' : 'Buscar'}
           </button>
         </div>
