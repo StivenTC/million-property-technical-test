@@ -11,25 +11,22 @@ interface Props {
 }
 
 export default function PropertySearchScreen({ initialProperties }: Props) {
-  const [filters, setFilters] = useState({
+  const initialFilters = {
     name: '',
     address: '',
     minPrice: '',
     maxPrice: '',
-  });
+  };
 
+  const [filters, setFilters] = useState(initialFilters);
   const [properties, setProperties] = useState(initialProperties);
-
   const [searchPerformed, setSearchPerformed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setFilters((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFilters((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSearch = async () => {
@@ -48,10 +45,27 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
     }
   };
 
+  const handleReset = () => {
+    setFilters(initialFilters);
+    setProperties(initialProperties);
+    setSearchPerformed(false);
+    setError(null);
+  };
+
   return (
-    <section>
-      <div className={styles.searchContainer}>
-        <form className={styles.filterGrid} onSubmit={(e) => { e.preventDefault(); handleSearch(); }}>
+    <section aria-labelledby="main-heading">
+      <h1 id="main-heading" className={styles.mainTitle}>
+        Encuentra tu Propiedad Ideal
+      </h1>
+
+      <div role="search" className={styles.searchContainer}>
+        <form
+          className={styles.filterGrid}
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSearch();
+          }}
+        >
           <div className={styles.filterGroup}>
             <label htmlFor="name">Nombre</label>
             <input
@@ -100,17 +114,30 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
             />
           </div>
 
-          <button
-            type="submit"
-            disabled={isLoading}
-            className={styles.searchButton}
-          >
-            {isLoading ? 'Buscando...' : 'Buscar'}
-          </button>
+          <div className={styles.buttonGroup}>
+            <button
+              type="submit"
+              disabled={isLoading}
+              className={styles.searchButton}
+            >
+              {isLoading ? 'Buscando...' : 'Buscar'}
+            </button>
+            <button
+              type="button"
+              onClick={handleReset}
+              className={styles.resetButton}
+            >
+              Limpiar filtros
+            </button>
+          </div>
         </form>
       </div>
 
-      {isLoading && <div role="status" className={styles.loading}>Cargando propiedades...</div>}
+      {isLoading && (
+        <div role="status" className={styles.loading}>
+          Cargando propiedades...
+        </div>
+      )}
 
       {!isLoading && error && (
         <div role="alert" className={styles.error}>
@@ -125,14 +152,20 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
       )}
 
       {!isLoading && !error && properties.length > 0 && (
-        <div>
-          <h2>Resultados</h2>
+        <section aria-labelledby="results-heading">
+          <h2 id="results-heading" className={styles.resultsTitle}>
+            Resultados
+          </h2>
           <div className={styles.resultsGrid}>
             {properties.map((property, index) => (
-              <PropertyCard key={property.id} property={property} isPriority={index < 2} />
+              <PropertyCard
+                key={property.id}
+                property={property}
+                isPriority={index < 2}
+              />
             ))}
           </div>
-        </div>
+        </section>
       )}
     </section>
   );

@@ -1,3 +1,10 @@
+.mainTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
 .searchContainer {
   background-color: var(--color-white);
   display: flex;
@@ -47,17 +54,26 @@
   flex: 0.5;
 }
 
-.searchButton {
+.buttonGroup {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.searchButton, .resetButton {
   font-size: 1rem;
   font-weight: 600;
-  padding: 0.75rem;
-  border: none;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid transparent;
   border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  height: calc(1rem + 1.5rem + 2px);
+}
+
+.searchButton {
   background-color: var(--color-primary);
   color: var(--color-white);
-  cursor: pointer;
-  transition: background-color 0.2s;
-  height: calc(1rem + 1.5rem + 2px);
 
   &:hover {
     background-color: darken(#0070f3, 10%);
@@ -67,6 +83,26 @@
     background-color: #eaeaea;
     cursor: not-allowed;
   }
+}
+
+.resetButton {
+  background-color: transparent;
+  color: var(--color-text);
+  border-color: var(--color-border);
+
+  &:hover {
+    background-color: var(--color-background);
+    border-color: darken(#e0e0e0, 10%);
+  }
+}
+
+.resultsTitle {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  padding-bottom: 0.5rem;
+  display: inline-block;
 }
 
 .resultsGrid {

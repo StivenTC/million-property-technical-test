@@ -20,20 +20,30 @@ export default function PropertyDetailScreen({ property }: Props) {
       </header>
 
       <div className={styles.content}>
-        <main className={styles.leftColumn}>
-          <section>
-            <h2 className={styles.sectionTitle}>Galería</h2>
+        <main className={styles.mainContent}>
+          <section aria-labelledby="gallery-heading">
+            <h2 id="gallery-heading" className={styles.sectionTitle}>
+              Galería
+            </h2>
             <ImageGallery images={property.images} />
           </section>
 
-          <section>
-            <h2 className={styles.sectionTitle}>Información Adicional</h2>
-            <p><strong>Año:</strong> {property.year}</p>
-            <p><strong>Código Interno:</strong> {property.codeInternal}</p>
+          <section aria-labelledby="details-heading">
+            <h2 id="details-heading" className={styles.sectionTitle}>
+              Detalles de la Propiedad
+            </h2>
+            <p>
+              <strong>Año:</strong> {property.year}
+            </p>
+            <p>
+              <strong>Código Interno:</strong> {property.codeInternal}
+            </p>
           </section>
 
-          <section>
-            <h2 className={styles.sectionTitle}>Historial (Traces)</h2>
+          <section aria-labelledby="history-heading">
+            <h2 id="history-heading" className={styles.sectionTitle}>
+              Historial de Transacciones
+            </h2>
             <div className={styles.tracesTableWrapper}>
               <table className={styles.tracesTable}>
                 <thead>
@@ -65,9 +75,11 @@ export default function PropertyDetailScreen({ property }: Props) {
           </section>
         </main>
 
-        <aside className={styles.rightColumn}>
-          <section className={styles.ownerCard}>
-            <h2 className={styles.sectionTitle}>Propietario</h2>
+        <aside className={styles.sidebar}>
+          <section className={styles.ownerCard} aria-labelledby="owner-heading">
+            <h2 id="owner-heading" className={styles.sectionTitle}>
+              Propietario
+            </h2>
             <Image
               src={property.owner.photo || '/placeholder-avatar.png'}
               alt={`Foto de ${property.owner.name}`}
