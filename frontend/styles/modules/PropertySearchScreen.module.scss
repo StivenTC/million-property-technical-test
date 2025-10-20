@@ -57,12 +57,24 @@
 
     &::placeholder {
       color: var(--color-text-secondary);
+      font-size: 0.9rem;
     }
   }
 }
 
 .priceFilter {
   flex: 0.6;
+}
+
+.priceRangeContainer {
+  display: contents;
+}
+
+@media (max-width: 900px) {
+  .priceRangeContainer {
+    display: flex;
+    gap: 1rem;
+  }
 }
 
 .buttonContainer {
@@ -140,7 +152,7 @@
 
 .resultsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
   justify-items: center;
 }
@@ -185,17 +197,34 @@
     }
   }
 
+  .priceRangeContainer {
+    display: flex;
+    gap: 1rem;
+  }
+
   .buttonContainer {
     padding: 0;
     justify-content: flex-end;
     width: 100%;
+    display: flex;
+    gap: 1rem;
+  }
+
+  .clearButton {
+    width: auto;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    background-color: transparent;
+    color: var(--color-text-primary);
+    flex-grow: 0;
   }
 
   .searchButton {
-    width: 100%;
     border-radius: 6px;
     height: auto;
     padding: 0.75rem 1.5rem;
+    flex-grow: 1;
 
     .searchButtonIcon {
       display: none;

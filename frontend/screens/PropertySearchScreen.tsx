@@ -74,7 +74,7 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
               type="text"
               id="name"
               name="name"
-              placeholder="Buscar por nombre o zona"
+              placeholder="Buscar por nombre"
               value={filters.name}
               onChange={handleFilterChange}
             />
@@ -92,28 +92,30 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
             />
           </div>
 
-          <div className={`${styles.filterGroup} ${styles.priceFilter}`}>
-            <label htmlFor="minPrice" className="sr-only">Precio Mínimo</label>
-            <input
-              type="number"
-              id="minPrice"
-              name="minPrice"
-              placeholder="Precio mín."
-              value={filters.minPrice}
-              onChange={handleFilterChange}
-            />
-          </div>
+          <div className={styles.priceRangeContainer}>
+            <div className={`${styles.filterGroup} ${styles.priceFilter}`}>
+              <label htmlFor="minPrice" className="sr-only">Precio Mínimo</label>
+              <input
+                type="number"
+                id="minPrice"
+                name="minPrice"
+                placeholder="Precio mín."
+                value={filters.minPrice}
+                onChange={handleFilterChange}
+              />
+            </div>
 
-          <div className={`${styles.filterGroup} ${styles.priceFilter}`}>
-            <label htmlFor="maxPrice" className="sr-only">Precio Máximo</label>
-            <input
-              type="number"
-              id="maxPrice"
-              name="maxPrice"
-              placeholder="Precio máx."
-              value={filters.maxPrice}
-              onChange={handleFilterChange}
-            />
+            <div className={`${styles.filterGroup} ${styles.priceFilter}`}>
+              <label htmlFor="maxPrice" className="sr-only">Precio Máximo</label>
+              <input
+                type="number"
+                id="maxPrice"
+                name="maxPrice"
+                placeholder="Precio máx."
+                value={filters.maxPrice}
+                onChange={handleFilterChange}
+              />
+            </div>
           </div>
 
           <div className={styles.buttonContainer}>
@@ -121,8 +123,7 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
               <button
                 type="button"
                 onClick={handleReset}
-                className={styles.clearButton}
-              >
+                className={styles.clearButton}>
                 Limpiar
               </button>
             )}

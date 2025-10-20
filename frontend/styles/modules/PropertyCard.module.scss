@@ -42,9 +42,8 @@
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .address {
