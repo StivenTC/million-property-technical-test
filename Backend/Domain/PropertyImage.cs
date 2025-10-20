@@ -12,6 +12,7 @@ public class PropertyImage
   [BsonRepresentation(BsonType.ObjectId)]
   public string IdProperty { get; set; } = string.Empty;
 
+  [BsonElement("file")]
   public string File { get; set; } = string.Empty;
 
   public bool Enabled { get; set; }

@@ -49,49 +49,49 @@ public class PropertyRepository : IPropertyRepository
       filter &= filterBuilder.Lte(p => p.Price, maxPrice.Value);
     }
 
-  return await _propertiesCollection.Find(filter).ToListAsync();
+    return await _propertiesCollection.Find(filter).ToListAsync();
   }
 
   public async Task<IEnumerable<PropertyDto>> GetPropertiesWithImagesAsync(string? name, string? address, decimal? minPrice, decimal? maxPrice)
   {
-      var filterBuilder = Builders<Property>.Filter;
-      var filter = filterBuilder.Empty;
+    var filterBuilder = Builders<Property>.Filter;
+    var filter = filterBuilder.Empty;
 
-      if (!string.IsNullOrWhiteSpace(name))
-      {
-          filter &= filterBuilder.Regex(p => p.Name, new BsonRegularExpression(name, "i"));
-      }
+    if (!string.IsNullOrWhiteSpace(name))
+    {
+      filter &= filterBuilder.Regex(p => p.Name, new BsonRegularExpression(name, "i"));
+    }
 
-      if (!string.IsNullOrWhiteSpace(address))
-      {
-          filter &= filterBuilder.Regex(p => p.Address, new BsonRegularExpression(address, "i"));
-      }
+    if (!string.IsNullOrWhiteSpace(address))
+    {
+      filter &= filterBuilder.Regex(p => p.Address, new BsonRegularExpression(address, "i"));
+    }
 
-      if (minPrice.HasValue)
-      {
-          filter &= filterBuilder.Gte(p => p.Price, minPrice.Value);
-      }
+    if (minPrice.HasValue)
+    {
+      filter &= filterBuilder.Gte(p => p.Price, minPrice.Value);
+    }
 
-      if (maxPrice.HasValue)
-      {
-          filter &= filterBuilder.Lte(p => p.Price, maxPrice.Value);
-      }
+    if (maxPrice.HasValue)
+    {
+      filter &= filterBuilder.Lte(p => p.Price, maxPrice.Value);
+    }
 
-      var aggregation = _propertiesCollection.Aggregate()
-          .Match(filter)
-          .Lookup(_imagesCollection.CollectionNamespace.CollectionName, "_id", "IdProperty", "Images")
-          .Project(new BsonDocument
-          {
+    var aggregation = _propertiesCollection.Aggregate()
+        .Match(filter)
+        .Lookup(_imagesCollection.CollectionNamespace.CollectionName, "_id", "IdProperty", "Images")
+        .Project(new BsonDocument
+        {
               { "Id", new BsonDocument("$toString", "$_id") },
               { "IdOwner", "$IdOwner" },
               { "Name", "$Name" },
               { "Address", "$Address" },
               { "Price", "$Price" },
               { "ImageUrl", new BsonDocument("$ifNull", new BsonArray { new BsonDocument("$arrayElemAt", new BsonArray { "$Images.File", 0 }), "" }) }
-          })
-          .As<PropertyDto>();
+        })
+        .As<PropertyDto>();
 
-      return await aggregation.ToListAsync();
+    return await aggregation.ToListAsync();
   }
 
   public async Task<Property?> GetPropertyByIdAsync(string id)
