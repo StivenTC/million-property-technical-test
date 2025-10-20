@@ -60,7 +60,9 @@
   background-color: var(--color-background);
   padding: 1.5rem;
   border-radius: 8px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .ownerPhoto {
@@ -68,7 +70,7 @@
   height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  margin: 0 auto 1rem;
+  margin-bottom: 1rem;
   border: 3px solid var(--color-primary);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #444;
@@ -104,5 +106,71 @@
 
   tr:last-child td {
     border-bottom: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+
+  .name {
+    font-size: 2rem;
+  }
+
+  .content {
+    padding: 1rem;
+  }
+
+  .tracesTableWrapper {
+    overflow-x: auto;
+  }
+
+  .tracesTable {
+    thead {
+      display: none;
+    }
+
+    tr {
+      display: block;
+      border-bottom: 2px solid var(--color-primary);
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+
+      &:last-child td {
+        border-bottom: 1px solid var(--color-border);
+        margin-bottom: 0;
+      }
+
+      td:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+
+    td {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      text-align: right;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--color-border);
+      white-space: normal;
+      overflow-wrap: break-word;
+      min-width: 0;
+
+      &:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      &::before {
+        content: attr(data-label);
+        font-weight: 600;
+        text-align: left;
+        padding-right: 1rem;
+        flex-shrink: 0;
+      }
+    }
   }
 }

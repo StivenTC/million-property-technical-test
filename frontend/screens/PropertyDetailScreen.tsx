@@ -58,10 +58,10 @@ export default function PropertyDetailScreen({ property }: Props) {
                   {property.traces.length > 0 ? (
                     property.traces.map((trace) => (
                       <tr key={trace.id}>
-                        <td>{trace.name}</td>
-                        <td>{new Date(trace.dateSale).toLocaleDateString()}</td>
-                        <td>{formatCurrency(trace.value)}</td>
-                        <td>{formatCurrency(trace.tax)}</td>
+                        <td data-label="Nombre">{trace.name}</td>
+                        <td data-label="Fecha Venta">{new Date(trace.dateSale).toLocaleDateString()}</td>
+                        <td data-label="Valor">{formatCurrency(trace.value)}</td>
+                        <td data-label="Impuesto">{formatCurrency(trace.tax)}</td>
                       </tr>
                     ))
                   ) : (

@@ -24,7 +24,7 @@
 
 .thumbnailList {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(80px, 120px));
   gap: 0.5rem;
 }
 
@@ -50,4 +50,14 @@
 
 .thumbnailActive {
   border-color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .mainImageWrapper {
+    padding-top: 100%;
+  }
+
+  .thumbnailList {
+    grid-template-columns: repeat(auto-fit, minmax(60px, 75px));
+  }
 }

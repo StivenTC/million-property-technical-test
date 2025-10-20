@@ -25,7 +25,7 @@ export default function ImageGallery({ images }: Props) {
             alt="No hay imagen disponible"
             fill
             className={styles.mainImage}
-            sizes="60vw"
+            sizes="(max-width: 768px) 100vw, 60vw"
             priority
           />
         </div>
@@ -43,7 +43,7 @@ export default function ImageGallery({ images }: Props) {
           src={activeImage.file}
           alt="Imagen principal de la propiedad"
           fill
-          sizes="60vw"
+          sizes="(max-width: 768px) 100vw, 60vw"
           className={styles.mainImage}
           priority
         />
