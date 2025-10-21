@@ -21,7 +21,7 @@ export default function ImageGallery({ images }: Props) {
       <div className={styles.gallery}>
         <div className={styles.mainImageWrapper}>
           <Image
-            src="/placeholder-image.jpg"
+            src="https://placehold.co/800x600/EEE/31343C?text=Sin+imagen"
             alt="No hay imagen disponible"
             fill
             className={styles.mainImage}

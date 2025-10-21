@@ -95,13 +95,13 @@ export default function PropertyDetailScreen({ property }: Props) {
               Propietario
             </h2>
             <Image
-              src={property.owner.photo || '/placeholder-avatar.png'}
-              alt={`Foto de ${property.owner.name}`}
+              src={property.owner?.photo || 'https://placehold.co/100x100/EEE/31343C?text=Dueño'}
+              alt={`Foto de ${property.owner?.name}`}
               width={100}
               height={100}
               className={styles.ownerPhoto}
             />
-            <p className={styles.ownerName}>{property.owner.name}</p>
+            <p className={styles.ownerName}>{property.owner?.name}</p>
           </section>
         </aside>
       </div>

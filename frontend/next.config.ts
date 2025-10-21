@@ -23,6 +23,10 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'placehold.co',
+      },
+      {
+        protocol: 'https',
         hostname: 'maustorageprod.blob.core.windows.net',
         port: '',
         pathname: '/**',

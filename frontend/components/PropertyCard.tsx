@@ -19,7 +19,7 @@ export default function PropertyCard({ property, isPriority = false }: Props) {
       aria-label={`Ver propiedad ${property.name}`}>
       <div className={styles.imageWrapper}>
         <Image
-          src={property.imageUrl || '/placeholder-image.jpg'}
+          src={property.imageUrl || 'https://placehold.co/600x400/EEE/31343C?text=Propiedad'}
           alt={`Imagen de ${property.name}`}
           fill
           sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
