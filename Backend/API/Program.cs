@@ -11,17 +11,20 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddExceptionHandler<MillionProperty.API.Middleware.GlobalExceptionHandler>();
 builder.Services.AddProblemDetails();
 
-var allowedOrigins = builder.Configuration.GetValue<string>("CorsSettings:AllowedOrigins");
-
 builder.Services.AddCors(options =>
 {
-  options.AddPolicy("AllowReactApp",
-      policy =>
-      {
-        policy.WithOrigins(allowedOrigins ?? "http://localhost:3000")
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-      });
+  options.AddPolicy("AllowReactApp", policy =>
+  {
+    var allowedOrigins = builder.Configuration.GetValue<string>("CorsSettings:AllowedOrigins");
+
+    var origins = !string.IsNullOrEmpty(allowedOrigins)
+          ? allowedOrigins.Split(',')
+          : new[] { "http://localhost:3000" };
+
+    policy.WithOrigins(origins)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+  });
 });
 
 builder.Services.Configure<MillionProperty.Infrastructure.MongoDatabaseSettings>(
