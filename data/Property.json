@@ -1,0 +1,182 @@
+[
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0001",
+    "Name": "Gran Mansión en BAY RD",
+    "Address": "5940 BAY RD #,MIAMI BEACH,FL 33140",
+    "Price": 169000000,
+    "CodeInternal": "A11859126",
+    "Year": 1936,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0001"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0002",
+    "Name": "Compuesto de Lujo en PALM AVE",
+    "Address": "190 PALM AVE #,MIAMI BEACH,FL 33139",
+    "Price": 150000000,
+    "CodeInternal": "A11729636",
+    "Year": 2014,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0002"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0003",
+    "Name": "Paraíso en Palm Island",
+    "Address": "198 PALM AVE #,MIAMI BEACH,FL 33139",
+    "Price": 99000000,
+    "CodeInternal": "A11833354",
+    "Year": 2016,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0002"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0004",
+    "Name": "Penthouse en Palazzo Del Sol",
+    "Address": "6800 FISHER ISLAND DR 6802 #6802,MIAMI BEACH,FL 33109",
+    "Price": 85000000,
+    "CodeInternal": "A11745701",
+    "Year": 2019,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0003"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0005",
+    "Name": "Obra Maestra en Millionaire's Row",
+    "Address": "3100 BAY RD #,MIAMI BEACH,FL 33140",
+    "Price": 75000000,
+    "CodeInternal": "A11820623",
+    "Year": 2024,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0004"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0006",
+    "Name": "Propiedad Trofeo en Key Biscayne",
+    "Address": "280 HARBOR DR #,KEY BISCAYNE,FL 33149",
+    "Price": 71000000,
+    "CodeInternal": "A11731458",
+    "Year": 1996,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0005"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0007",
+    "Name": "Compuesto Frente al Mar en Golden Beach",
+    "Address": "105+115 OCEAN BLVD #,GOLDEN BEACH,FL 33160",
+    "Price": 68000000,
+    "CodeInternal": "A11480605",
+    "Year": 1956,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0006"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0008",
+    "Name": "Finca Estatal en Palm Island",
+    "Address": "130 PALM AVE #,MIAMI BEACH,FL 33139",
+    "Price": 60000000,
+    "CodeInternal": "A11697102",
+    "Year": 2021,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0007"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0009",
+    "Name": "Triplex Penthouse en Aston Martin",
+    "Address": "300 BISCAYNE BLVD WAY #6301,MIAMI,FL 33131",
+    "Price": 59000000,
+    "CodeInternal": "A11656298",
+    "Year": 2023,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0008"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0010",
+    "Name": "Lote Doble en Palm Island",
+    "Address": "145 PALM AVE #,MIAMI BEACH,FL 33139",
+    "Price": 59000000,
+    "CodeInternal": "A11866854",
+    "Year": 2000,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0009"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0011",
+    "Name": "Lujo Moderno en Venetian Islands",
+    "Address": "1236 VENETIAN WAY #,MIAMI,FL 33139",
+    "Price": 56000000,
+    "CodeInternal": "A11591088",
+    "Year": 2025,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0010"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0012",
+    "Name": "La Gran Dama de Fisher Island",
+    "Address": "1007 FISHER ISLAND DRIVE #,MIAMI BEACH,FL 33109",
+    "Price": 55000000,
+    "CodeInternal": "A11890798",
+    "Year": 2026,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0003"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0013",
+    "Name": "Penthouse Waldorf Astoria",
+    "Address": "300 BISCAYNE BLVD #PH 6,MIAMI,FL 33132",
+    "Price": 50000000,
+    "CodeInternal": "A11496682",
+    "Year": 2028,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0008"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0014",
+    "Name": "Penthouse 01 Waldorf Astoria",
+    "Address": "300 BISCAYNE BLVD #PH,MIAMI,FL 33132",
+    "Price": 50000000,
+    "CodeInternal": "A11657466",
+    "Year": 2028,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0008"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0015",
+    "Name": "LPH en Palazzo Della Luna",
+    "Address": "6893 FISHER ISLAND DR #LPH 6893,MIAMI BEACH,FL 33109",
+    "Price": 50000000,
+    "CodeInternal": "A11825365",
+    "Year": 2019,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0003"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0016",
+    "Name": "Penthouse Four Seasons",
+    "Address": "9111 COLLINS AVE #N-PH6,SURFSIDE,FL 33154",
+    "Price": 49900000,
+    "CodeInternal": "A11691335",
+    "Year": 2017,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0001"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0017",
+    "Name": "Penthouse Oeste en The Perigon",
+    "Address": "5333 COLLINS AVE #PHW,MIAMI BEACH,FL 33140",
+    "Price": 37000000,
+    "CodeInternal": "A11564877",
+    "Year": 2026,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0004"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0018",
+    "Name": "Mansión Moderna Toscana",
+    "Address": "1005 FISHER ISLAND DRIVE #,FISHER ISLAND,FL 33109",
+    "Price": 36500000,
+    "CodeInternal": "A11890037",
+    "Year": 2025,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0003"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0019",
+    "Name": "Estilo Resort en North Bay Road",
+    "Address": "5004 BAY RD #,MIAMI BEACH,FL 33140",
+    "Price": 36000000,
+    "CodeInternal": "A11650138",
+    "Year": 2016,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0005"
+  },
+  {
+    "_id": "675b4b2c1c6b8a2f3a7e0020",
+    "Name": "Villa Custom Fisher Island",
+    "Address": "1010 FISHER ISLAND DRIVE #,FISHER ISLAND,FL 33109",
+    "Price": 36000000,
+    "CodeInternal": "A11417393",
+    "Year": 2025,
+    "IdOwner": "675b4a0e1c6b8a2f3a7e0003"
+  }
+]

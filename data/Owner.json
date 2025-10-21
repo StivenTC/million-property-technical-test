@@ -1,0 +1,72 @@
+[
+  {
+    "_id": "675b4a0e1c6b8a2f3a7e0001",
+    "Name": "Juan Pérez",
+    "Address": "Calle 123 #45-67, Bogotá",
+    "Photo": "https://randomuser.me/api/portraits/men/1.jpg",
+    "Birthday": "1980-05-15T00:00:00Z"
+  },
+  {
+    "_id": "675b4a0e1c6b8a2f3a7e0002",
+    "Name": "Maria Rodríguez",
+    "Address": "Carrera 15 #80-30, Medellín",
+    "Photo": "https://randomuser.me/api/portraits/women/2.jpg",
+    "Birthday": "1992-11-01T00:00:00Z"
+  },
+  {
+    "_id": "675b4a0e1c6b8a2f3a7e0003",
+    "Name": "Carlos Sánchez",
+    "Address": "Avenida Siempre Viva 742, Cali",
+    "Photo": "https://randomuser.me/api/portraits/men/3.jpg",
+    "Birthday": "1978-01-30T00:00:00Z"
+  },
+  {
+    "_id": "675b4a0e1c6b8a2f3a7e0004",
+    "Name": "Sofía Gómez",
+    "Address": "Calle Falsa 123, Barranquilla",
+    "Photo": "https://randomuser.me/api/portraits/women/4.jpg",
+    "Birthday": "1995-07-20T00:00:00Z"
+  },
+  {
+    "_id": "675b4a0e1c6b8a2f3a7e0005",
+    "Name": "Luis Fernández",
+    "Address": "Diagonal 20 #10-10, Cartagena",
+    "Photo": "https://randomuser.me/api/portraits/men/5.jpg",
+    "Birthday": "1983-09-12T00:00:00Z"
+  },
+  {
+    "_id": "675b4a0e1c6b8a2f3a7e0006",
+    "Name": "Ana Torres",
+    "Address": "Transversal 5 #25-50, Bucaramanga",
+    "Photo": "https://randomuser.me/api/portraits/women/6.jpg",
+    "Birthday": "1988-02-05T00:00:00Z"
+  },
+  {
+    "_id": "675b4a0e1c6b8a2f3a7e0007",
+    "Name": "Inmobiliaria El Sol SAS",
+    "Address": "Oficina 101, Torre Central, Bogotá",
+    "Photo": "https://randomuser.me/api/portraits/men/7.jpg",
+    "Birthday": "2005-01-01T00:00:00Z"
+  },
+  {
+    "_id": "675b4a0e1c6b8a2f3a7e0008",
+    "Name": "Constructora Andina",
+    "Address": "Carrera 7 #70-20, Bogotá",
+    "Photo": "https://randomuser.me/api/portraits/women/8.jpg",
+    "Birthday": "1999-06-10T00:00:00Z"
+  },
+  {
+    "_id": "675b4a0e1c6b8a2f3a7e0009",
+    "Name": "Miguel Díaz",
+    "Address": "Calle 90 # 11-13, Bogotá",
+    "Photo": "https://randomuser.me/api/portraits/men/9.jpg",
+    "Birthday": "1976-12-25T00:00:00Z"
+  },
+  {
+    "_id": "675b4a0e1c6b8a2f3a7e0010",
+    "Name": "Lucía Morales",
+    "Address": "Avenida El Poblado # 5-10, Medellín",
+    "Photo": "https://randomuser.me/api/portraits/women/10.jpg",
+    "Birthday": "1990-04-18T00:00:00Z"
+  }
+]

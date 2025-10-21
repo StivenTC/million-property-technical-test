@@ -1,7 +1,10 @@
-using MillionProperty.Infrastructure;
-using MillionProperty.Application.Properties;
-using MillionProperty.Infrastructure.Properties;
+using Microsoft.Extensions.Options;
 using MillionProperty.API.Endpoints;
+using MillionProperty.Application.Properties;
+using MillionProperty.Infrastructure;
+using MillionProperty.Infrastructure.Data;
+using MillionProperty.Infrastructure.Properties;
+using MongoDB.Driver;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,13 +19,16 @@ builder.Services.AddCors(options =>
       policy =>
       {
         policy.WithOrigins(allowedOrigins ?? "http://localhost:3000")
-                .AllowAnyHeader()
-                .AllowAnyMethod();
+              .AllowAnyHeader()
+              .AllowAnyMethod();
       });
 });
 
-builder.Services.Configure<MongoDatabaseSettings>(
+builder.Services.Configure<MillionProperty.Infrastructure.MongoDatabaseSettings>(
     builder.Configuration.GetSection("MongoDatabaseSettings"));
+
+builder.Services.AddSingleton<IMongoClient>(sp =>
+    new MongoClient(sp.GetRequiredService<IOptions<MillionProperty.Infrastructure.MongoDatabaseSettings>>().Value.ConnectionString));
 
 builder.Services.AddSingleton<IPropertyRepository, PropertyRepository>();
 builder.Services.AddScoped<IPropertyService, PropertyService>();
@@ -31,6 +37,23 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+  var services = scope.ServiceProvider;
+  var dbSettings = services.GetRequiredService<IOptions<MillionProperty.Infrastructure.MongoDatabaseSettings>>().Value;
+  var logger = services.GetRequiredService<ILogger<Program>>();
+  try
+  {
+    var client = services.GetRequiredService<IMongoClient>();
+    var database = client.GetDatabase(dbSettings.DatabaseName);
+    await DbSeeder.SeedAllCollectionsAsync(database, logger);
+  }
+  catch (Exception ex)
+  {
+    logger.LogError(ex, "An error occurred during database seeding.");
+  }
+}
 
 app.UseExceptionHandler();
 

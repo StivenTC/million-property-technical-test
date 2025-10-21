@@ -1,0 +1,170 @@
+[
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0001",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0001",
+    "DateSale": "1995-06-20T00:00:00Z",
+    "Name": "Venta anterior",
+    "Value": 50000000,
+    "Tax": 2500000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0002",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0001",
+    "DateSale": "2020-01-15T00:00:00Z",
+    "Name": "Adquisición por Juan Pérez",
+    "Value": 150000000,
+    "Tax": 15000000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0003",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0002",
+    "DateSale": "2014-03-10T00:00:00Z",
+    "Name": "Venta de Constructor",
+    "Value": 100000000,
+    "Tax": 10000000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0004",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0003",
+    "DateSale": "2016-10-01T00:00:00Z",
+    "Name": "Venta de Constructor",
+    "Value": 80000000,
+    "Tax": 8000000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0005",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0004",
+    "DateSale": "2019-11-20T00:00:00Z",
+    "Name": "Venta inicial PH",
+    "Value": 70000000,
+    "Tax": 7000000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0006",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0005",
+    "DateSale": "2024-01-30T00:00:00Z",
+    "Name": "Venta de Constructor",
+    "Value": 65000000,
+    "Tax": 6500000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0007",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0006",
+    "DateSale": "2005-08-19T00:00:00Z",
+    "Name": "Venta anterior",
+    "Value": 40000000,
+    "Tax": 2000000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0008",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0007",
+    "DateSale": "2010-12-10T00:00:00Z",
+    "Name": "Venta anterior",
+    "Value": 35000000,
+    "Tax": 1750000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0009",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0008",
+    "DateSale": "2021-02-02T00:00:00Z",
+    "Name": "Venta de Inmobiliaria",
+    "Value": 50000000,
+    "Tax": 5000000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0010",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0009",
+    "DateSale": "2023-01-15T00:00:00Z",
+    "Name": "Venta de Constructora",
+    "Value": 52000000,
+    "Tax": 5200000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0011",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0010",
+    "DateSale": "2008-04-10T00:00:00Z",
+    "Name": "Venta anterior",
+    "Value": 20000000,
+    "Tax": 1000000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0012",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0011",
+    "DateSale": "2025-01-01T00:00:00Z",
+    "Name": "Venta de Constructor",
+    "Value": 50000000,
+    "Tax": 5000000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0013",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0012",
+    "DateSale": "2026-01-01T00:00:00Z",
+    "Name": "Venta de Constructor",
+    "Value": 51000000,
+    "Tax": 5100000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0014",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0013",
+    "DateSale": "2028-01-01T00:00:00Z",
+    "Name": "Venta de Constructor",
+    "Value": 45000000,
+    "Tax": 4500000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0015",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0014",
+    "DateSale": "2028-01-01T00:00:00Z",
+    "Name": "Venta de Constructor",
+    "Value": 45000000,
+    "Tax": 4500000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0016",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0015",
+    "DateSale": "2019-05-20T00:00:00Z",
+    "Name": "Venta inicial LPH",
+    "Value": 42000000,
+    "Tax": 4200000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0017",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0016",
+    "DateSale": "2017-06-15T00:00:00Z",
+    "Name": "Venta inicial PH",
+    "Value": 40000000,
+    "Tax": 4000000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0018",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0017",
+    "DateSale": "2026-01-01T00:00:00Z",
+    "Name": "Venta de Constructor",
+    "Value": 35000000,
+    "Tax": 3500000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0019",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0018",
+    "DateSale": "2025-01-01T00:00:00Z",
+    "Name": "Venta de Constructor",
+    "Value": 34000000,
+    "Tax": 3400000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0020",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0019",
+    "DateSale": "2018-07-20T00:00:00Z",
+    "Name": "Venta anterior",
+    "Value": 25000000,
+    "Tax": 2500000
+  },
+  {
+    "_id": "675b4d0b1c6b8a2f3a7e0021",
+    "IdProperty": "675b4b2c1c6b8a2f3a7e0020",
+    "DateSale": "2025-01-01T00:00:00Z",
+    "Name": "Venta de Constructor",
+    "Value": 33000000,
+    "Tax": 3300000
+  }
+]

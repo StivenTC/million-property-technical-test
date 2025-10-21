@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using MillionProperty.Application.Properties;
 using MillionProperty.Domain;
@@ -12,9 +13,11 @@ public class PropertyRepository : IPropertyRepository
   private readonly IMongoCollection<Owner> _ownersCollection;
   private readonly IMongoCollection<PropertyImage> _imagesCollection;
   private readonly IMongoCollection<PropertyTrace> _tracesCollection;
-  public PropertyRepository(IOptions<MongoDatabaseSettings> settings)
+  private readonly ILogger<PropertyRepository> _logger;
+
+  public PropertyRepository(IMongoClient mongoClient, IOptions<MongoDatabaseSettings> settings, ILogger<PropertyRepository> logger)
   {
-    var mongoClient = new MongoClient(settings.Value.ConnectionString);
+    _logger = logger;
     var mongoDatabase = mongoClient.GetDatabase(settings.Value.DatabaseName);
 
     _propertiesCollection = mongoDatabase.GetCollection<Property>(settings.Value.PropertiesCollectionName);
@@ -54,6 +57,10 @@ public class PropertyRepository : IPropertyRepository
 
   public async Task<IEnumerable<PropertyDto>> GetPropertiesWithImagesAsync(string? name, string? address, decimal? minPrice, decimal? maxPrice)
   {
+    _logger.LogInformation("--- Entering GetPropertiesWithImagesAsync ---");
+    var count = await _propertiesCollection.CountDocumentsAsync(FilterDefinition<Property>.Empty);
+    _logger.LogInformation("--- Found {Count} documents in _propertiesCollection before aggregation ---", count);
+
     var filterBuilder = Builders<Property>.Filter;
     var filter = filterBuilder.Empty;
 
@@ -82,16 +89,17 @@ public class PropertyRepository : IPropertyRepository
         .Lookup(_imagesCollection.CollectionNamespace.CollectionName, "_id", "IdProperty", "Images")
         .Project(new BsonDocument
         {
-              { "Id", new BsonDocument("$toString", "$_id") },
               { "IdOwner", "$IdOwner" },
               { "Name", "$Name" },
               { "Address", "$Address" },
               { "Price", "$Price" },
-              { "ImageUrl", new BsonDocument("$ifNull", new BsonArray { new BsonDocument("$arrayElemAt", new BsonArray { "$Images.File", 0 }), "" }) }
+              { "ImageUrl", new BsonDocument("$ifNull", new BsonArray { new BsonDocument("$arrayElemAt", new BsonArray { "$Images.file", 0 }), "" }) }
         })
         .As<PropertyDto>();
 
-    return await aggregation.ToListAsync();
+    var results = await aggregation.ToListAsync();
+    _logger.LogInformation("--- Aggregation returned {Count} documents ---", results.Count);
+    return results;
   }
 
   public async Task<Property?> GetPropertyByIdAsync(string id)

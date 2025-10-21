@@ -13,24 +13,7 @@ public static class PropertyEndpoints
         decimal? minPrice,
         decimal? maxPrice) =>
     {
-      var properties = await propertyRepo.GetPropertiesAsync(name, address, minPrice, maxPrice);
-
-      var propertyDtos = new List<PropertyDto>();
-      foreach (var prop in properties)
-      {
-        var image = await propertyRepo.GetFirstImageByPropertyIdAsync(prop.Id);
-
-        propertyDtos.Add(new PropertyDto
-        {
-          Id = prop.Id,
-          IdOwner = prop.IdOwner,
-          Name = prop.Name,
-          Address = prop.Address,
-          Price = prop.Price,
-          ImageUrl = image?.File ?? string.Empty
-        });
-      }
-
+      var propertyDtos = await propertyRepo.GetPropertiesWithImagesAsync(name, address, minPrice, maxPrice);
       return Results.Ok(propertyDtos);
 
     })
