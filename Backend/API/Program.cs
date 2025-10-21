@@ -61,11 +61,8 @@ app.UseCors("AllowReactApp");
 
 app.UseHttpsRedirection();
 
-if (app.Environment.IsDevelopment())
-{
-  app.UseSwagger();
-  app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.MapPropertyEndpoints();
 
