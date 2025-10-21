@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import Image from 'next/image';
+import Header from '@/components/Header';
 import '@/styles/globals.scss';
 
 export const metadata: Metadata = {
@@ -16,19 +15,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
-        <header className="main-header">
-          <div className="header-content">
-            <Link href="/">
-              <Image
-                src="https://maustorageprod.blob.core.windows.net/spinfileuat/Spin/Data/Estate/IMG/ceb693ad6b7643fc8c1be271d6a9c068.svg"
-                alt="Million Logo"
-                width={120}
-                height={40}
-                priority
-              />
-            </Link>
-          </div>
-        </header>
+        <Header />
         <main className="main-container">
           {children}
         </main>

@@ -56,7 +56,7 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
 
   return (
     <section aria-labelledby="main-heading">
-      <h1 id="main-heading" className={styles.mainTitle}>
+      <h1 id="main-heading" className={`${styles.mainTitle} sr-only`}>
         Encuentra tu Propiedad Ideal
       </h1>
 
