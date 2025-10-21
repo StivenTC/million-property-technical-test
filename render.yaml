@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: million-api
+    env: docker
+    dockerfilePath: ./Backend/Dockerfile
+    plan: free
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: MongoDatabaseSettings__ConnectionString
+        sync: false
+      - key: CorsSettings__AllowedOrigins
+        sync: false
