@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { PropertyDto } from '@/types/property';
 import { getPropertyList } from '@/lib/api';
 import PropertyCard from '@/components/PropertyCard';
@@ -23,6 +23,17 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
   const [searchPerformed, setSearchPerformed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [sortOrder, setSortOrder] = useState('default');
+
+  const sortedProperties = useMemo(() => {
+    const sorted = [...properties];
+    if (sortOrder === 'price-asc') {
+      sorted.sort((a, b) => a.price - b.price);
+    } else if (sortOrder === 'name-asc') {
+      sorted.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    return sorted;
+  }, [properties, sortOrder]);
 
   const handleFilterChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -158,11 +169,25 @@ export default function PropertySearchScreen({ initialProperties }: Props) {
 
       {!isLoading && !error && properties.length > 0 && (
         <section aria-labelledby="results-heading">
-          <h2 id="results-heading" className={styles.resultsTitle}>
-            Resultados
-          </h2>
+          <div className={styles.resultsHeader}>
+            <h2 id="results-heading" className={styles.resultsTitle}>
+              Resultados
+            </h2>
+            <div className={styles.sortContainer}>
+              <label htmlFor="sort-order" className="sr-only">Ordenar por</label>
+              <select
+                id="sort-order"
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value)}
+                className={styles.sortSelect}>
+                <option value="default">Por defecto</option>
+                <option value="price-asc">Precio (menor a mayor)</option>
+                <option value="name-asc">Nombre (A-Z)</option>
+              </select>
+            </div>
+          </div>
           <div className={styles.resultsGrid}>
-            {properties.map((property, index) => (
+            {sortedProperties.map((property, index) => (
               <PropertyCard
                 key={property.id}
                 property={property}
