@@ -40,6 +40,20 @@ export default function PropertyDetailScreen({ property }: Props) {
             </p>
           </section>
 
+          <section aria-labelledby="map-heading">
+            <h2 id="map-heading" className={styles.sectionTitle}>
+              Ubicación
+            </h2>
+            <div className={styles.mapContainer}>
+              <iframe
+                className={styles.mapIframe}
+                src={`https://maps.google.com/maps?q=${encodeURIComponent(property.address)}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                loading="lazy"
+                title="Mapa de la propiedad"
+              ></iframe>
+            </div>
+          </section>
+
           <section aria-labelledby="history-heading">
             <h2 id="history-heading" className={styles.sectionTitle}>
               Historial de Transacciones
